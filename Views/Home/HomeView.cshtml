@@ -1,0 +1,30 @@
+﻿@model IEnumerable<WebApplication1.Data.Trust>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+</head>
+<body>
+    @foreach (var topic in Model)
+    {
+        <div class="card">
+            <div class="card-block">
+                <h3 class="card-title">@topic.Name</h3>
+                <h5 class="card-subtitle mb-2 text-muted">@topic.Location</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
+        </div>
+    }
+
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+</body>
+</html>
