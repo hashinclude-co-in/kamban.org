@@ -82,6 +82,8 @@ namespace Delete.Controllers
             {
                 case SignInStatus.Success:
                     {
+                        var res = await UserManager.FindByEmailAsync(model.Email);
+                        ViewBag.UserNameDisplay = res.Name;
                         if (returnUrl == null)
                             return RedirectToAction("TrustView", "Home");
                         else
@@ -156,12 +158,13 @@ namespace Delete.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            ViewBag.FirstName = model.FirstName;
+            ViewBag.UserNameDisplay = model.Name;
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser {
                     LastName = model.LastName,
-                    FirstName=model.FirstName,
+                    Name=model.Name,
+                    Email =model.Email,
                     UserName = model.Email
                 };
 

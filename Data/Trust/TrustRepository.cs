@@ -1,4 +1,5 @@
 ﻿using Delete.Data;
+using Delete.Data.Trust;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Data
 {
-    public class TrustRepository : ITrustRepository
+    public class TrustRepository
     {
         TrustContext _ctx;
         public TrustRepository(TrustContext ctx)
@@ -15,6 +16,7 @@ namespace WebApplication1.Data
             _ctx = ctx;
         }
 
+        #region Trust Related
         public bool AddTrust(Trust trust)
         {
             try
@@ -93,16 +95,14 @@ namespace WebApplication1.Data
 
         }
 
-        public string GetLinkedUserIdWithTrustId(int trustID)
+        public IQueryable<TrustUserRelationship> GetUserIdLinkedWithTrustId(int trustID)
         {
             return _ctx.TrustUserRelationship
-                .Where(x => x.TrustID == trustID)
-                .First()
-                .UserID;
+                .Where(x => x.TrustID == trustID);
 
         }
 
-        public bool LinkTrustIDWithUserId(string userID, int trustID, string role)
+        public bool LinkTrustIDWithUserId(string userID, int trustID, string role, string group)
         {
             try
             {
@@ -111,7 +111,8 @@ namespace WebApplication1.Data
                     {
                         UserID = userID,
                         TrustID = trustID,
-                        Role = role
+                        Role = role,
+                        Group= group
                     });
                 return true;
             }
@@ -128,6 +129,93 @@ namespace WebApplication1.Data
                        .Where(x => x.Id == trustId)
                        .First();
         }
+        #endregion
+
+        #region Inventory
+        public IQueryable<InventoryItem> GetAllInStockInventoryItems(int trustID)
+        {
+            return _ctx.InventoryItems
+                        .Where(x => x.TrustID == trustID);
+        }
+        public IQueryable<InventoryItem> GetAllOutOfStockInventoryItems()
+        {
+            return _ctx.InventoryItems
+                .Where(x => x.Quantity <= 0);
+        }
+        public bool AddNewInStockInventoryItem(InventoryItem inventoryItem)
+        {
+            try
+            {
+                _ctx.InventoryItems.Add(inventoryItem);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public bool UpdateInStockInventoryItem(InventoryItem inventoryItem)
+        {
+            try
+            {
+                var item = _ctx.InventoryItems
+                               .Where(x => x.Id == inventoryItem.Id);
+
+                if (item.Count() != 0)
+                {
+                    _ctx.InventoryItems.Remove(item.First());
+                    _ctx.InventoryItems.Add(inventoryItem);
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        internal ICollection<TrustUser> GetUnRegisteredUsersFromTrustId(int _trustId)
+        {
+            var item = _ctx.Trusts.Include("TrustUnregisteredUsers").Where(x => x.Id == _trustId).First();
+            return item.TrustUnregisteredUsers;
+        }
+
+        public bool RemoveInStockInventoryItem(int inventoryItemId)
+        {
+            try
+            {
+                var item = _ctx.InventoryItems
+                               .Where(x => x.Id == inventoryItemId);
+
+                if (item.Count() != 0)
+                {
+                    _ctx.InventoryItems.Remove(item.First());
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        internal bool AddUnRegisteredUserToTrustId(TrustUser trustUser)
+        {
+            try
+            {
+                var item = _ctx.Trusts.Where(x => x.Id == trustUser.TrustId).First();
+                _ctx.TrustUsers.Add(trustUser);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        #endregion
 
     }
 }

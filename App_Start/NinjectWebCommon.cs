@@ -11,6 +11,8 @@ namespace Delete.App_Start
     using Ninject;
     using Ninject.Web.Common;
     using WebApplication1.Data;
+    using System.Web.Http;
+    using WebApiContrib.IoC.Ninject;
 
     public static class NinjectWebCommon 
     {
@@ -47,6 +49,8 @@ namespace Delete.App_Start
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
                 RegisterServices(kernel);
+                GlobalConfiguration.Configuration.DependencyResolver = new NinjectResolver(kernel);
+
                 return kernel;
             }
             catch
@@ -64,7 +68,7 @@ namespace Delete.App_Start
         {
             //CK_ Depencency Injection
             kernel.Bind<TrustRepository>().To<TrustRepository>().InRequestScope();
-            kernel.Bind<ITrustRepository>().To<TrustRepository>().InRequestScope();
+            //kernel.Bind<ITrustRepository>().To<TrustRepository>().InRequestScope();
 
             //kernel.Bind<UserRepository>().To<UserRepository>().InRequestScope();
             //kernel.Bind<IUserRepository>().To<UserRepository>().InRequestScope();

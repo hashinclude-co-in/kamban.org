@@ -11,6 +11,6 @@ namespace Delete.Data
         public int TrustID { get; set; }
         public string UserID { get; set; }
         public string Role { get; set; }
-        public int Rating { get; set; }
+        public string Group { get; set; }
     }
 }

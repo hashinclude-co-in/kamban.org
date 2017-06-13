@@ -1,4 +1,5 @@
 ﻿using Delete.Data;
+using Delete.Data.Trust;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -25,5 +26,7 @@ namespace WebApplication1.Data
         public DbSet<Event> Events { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<TrustUserRelationship> TrustUserRelationship { get; set; }
+        public DbSet<InventoryItem> InventoryItems { get; set; }
+        public DbSet<TrustUser> TrustUsers { get; set; }
     }
 }
