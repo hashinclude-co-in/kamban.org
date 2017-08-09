@@ -11,6 +11,8 @@ namespace Kamban.API.App_Start
     using Ninject;
     using Ninject.Web.Common;
     using Trust;
+    using System.Web.Http;
+    using WebApiContrib.IoC.Ninject;
 
     public static class NinjectWebCommon 
     {
@@ -47,6 +49,9 @@ namespace Kamban.API.App_Start
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
                 RegisterServices(kernel);
+
+                GlobalConfiguration.Configuration.DependencyResolver =
+                    new NinjectResolver(kernel);
                 return kernel;
             }
             catch

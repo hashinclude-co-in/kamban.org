@@ -16,7 +16,12 @@ namespace Kamban.API.Trust
             base("AzureDBConnection")
 #endif
         {
+            this.Configuration.LazyLoadingEnabled = false;
+            this.Configuration.ProxyCreationEnabled = false;
 
+            Database.SetInitializer(
+                new MigrateDatabaseToLatestVersion<TrustContext, TrustMigrationsConfiguration>()
+                );
         }
         public DbSet<Trust> Trusts { get; set; }
         public DbSet<Contact> Contacts { get; set; }

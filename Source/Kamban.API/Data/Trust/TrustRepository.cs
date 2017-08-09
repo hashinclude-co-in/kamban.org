@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Kamban.API.Contacts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -29,9 +30,18 @@ namespace Kamban.API.Trust
             return _ctx.Trusts;
         }
 
-        public Trust GetTrustByID()
+        public Trust GetTrustByID(int id)
         {
-            throw new NotImplementedException();
+            return _ctx.Trusts
+                        .Where(x => x.ID == id)
+                        .First();
+        }
+
+        public bool AddNewContactToTrust(int trustID, Contact newContact)
+        {
+            Trust trust = GetTrustByID(trustID);
+            trust.Contacts.Add(newContact);
+            return true;
         }
         public void Save()
         {

@@ -9,39 +9,36 @@ namespace Kamban.API.Trust
 {
     public class TrustsController : ApiController
     {
+        #region Fields
         ITrustRepository _repo;
-        public TrustsController()
+        #endregion
+
+        #region Constructor
+        public TrustsController(ITrustRepository repo)
         {
-            _repo = new TrustRepository(new TrustContext());
+            _repo = repo;
         }
-        // GET api/<controller>
+        #endregion
+
+        #region GET Api
         public IEnumerable<Trust> Get()
         {
             return _repo.GetAllTrusts();
 
         }
-
-        // GET api/<controller>/5
-        public string Get(int id)
+        
+        public Trust Get(int id)
         {
-            return "value";
+            return _repo.GetTrustByID(id);
         }
+        #endregion
 
-        // POST api/<controller>
+        #region POST Api
         public void Post([FromBody]Trust value)
         {
             _repo.AddNewTrust(value);
             _repo.Save();
         }
-
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
-        }
+        #endregion
     }
 }

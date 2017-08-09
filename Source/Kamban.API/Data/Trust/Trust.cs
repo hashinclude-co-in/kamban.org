@@ -9,8 +9,9 @@ namespace Kamban.API.Trust
     public class Trust
     {
         public int ID { get; set; }
-        public string TrustName { get; set; }
-        public string TrustRegistrationNumber { get; set; }
-        public ICollection<Contact> AllContacts { get; set; }
+        public string Name { get; set; }
+        public string UserName { get; set; }
+        public string RegistrationNumber { get; set; }
+        public ICollection<Contact> Contacts { get; set; }
     }
 }
