@@ -25,5 +25,6 @@ namespace Kamban.API.Trust
         }
         public DbSet<Trust> Trusts { get; set; }
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Groups> Groups { get; set; }
     }
 }

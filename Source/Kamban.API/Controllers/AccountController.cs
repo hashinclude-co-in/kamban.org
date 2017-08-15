@@ -19,6 +19,8 @@ using Kamban.API.Results;
 
 namespace Kamban.API.Controllers
 {
+    //Login
+    //https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/individual-accounts-in-web-api
     [Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
@@ -327,8 +329,8 @@ namespace Kamban.API.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            
+            var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 

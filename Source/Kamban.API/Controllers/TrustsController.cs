@@ -24,12 +24,11 @@ namespace Kamban.API.Trust
         public IEnumerable<Trust> Get()
         {
             return _repo.GetAllTrusts();
-
         }
         
-        public Trust Get(int id)
+        public Trust Get(string userName)
         {
-            return _repo.GetTrustByID(id);
+            return _repo.GetTrustByUserName(userName);
         }
         #endregion
 

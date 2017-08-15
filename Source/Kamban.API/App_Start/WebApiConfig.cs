@@ -25,6 +25,18 @@ namespace Kamban.API
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
+                name: "GroupsRouting",
+                routeTemplate: "api/trusts/{userName}/groups/{groupName}",
+                defaults: new { controller = "groups", groupName = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "TrustRouting",
+                routeTemplate: "api/trusts/{userName}",
+                defaults: new { controller="trusts", userName = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }

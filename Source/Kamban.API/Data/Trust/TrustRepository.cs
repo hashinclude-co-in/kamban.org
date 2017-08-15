@@ -22,31 +22,136 @@ namespace Kamban.API.Trust
         #region Public Methods
         public bool AddNewTrust(Trust trust)
         {
-            _ctx.Trusts.Add(trust);
-            return true;
+            try
+            {
+                _ctx.Trusts.Add(trust);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
         public IQueryable<Trust> GetAllTrusts()
         {
-            return _ctx.Trusts;
+            try
+            {
+                return _ctx.Trusts;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
-        public Trust GetTrustByID(int id)
+        public IQueryable<Groups> GetAllGroups(string trustUserName)
         {
-            return _ctx.Trusts
-                        .Where(x => x.ID == id)
-                        .First();
+            try
+            {
+                return _ctx.Groups.Where(x => x.TrustUserName == trustUserName);
+            }
+            catch
+            {
+                return null;
+            }
         }
 
-        public bool AddNewContactToTrust(int trustID, Contact newContact)
+
+        public Trust GetTrustByUserName(string userName)
         {
-            Trust trust = GetTrustByID(trustID);
-            trust.Contacts.Add(newContact);
-            return true;
+            try
+            {
+                return _ctx.Trusts
+                            .Where(x => x.UserName == userName)
+                            .First();
+            }
+            catch
+            {
+                return null;
+            }
         }
-        public void Save()
+
+        public bool AddNewContactToTrust(string trustUserName, Contact newContact)
         {
-            _ctx.SaveChanges();
+            try
+            {
+                newContact.TrustUserName = trustUserName;
+                _ctx.Contacts.Add(newContact);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
+
+        public bool AddNewGroup(string trustUserName, string groupName, List<int> userIds)
+        {
+            try
+            {
+                _ctx.Groups.Add(new Contacts.Groups()
+                {
+                    TrustUserName = trustUserName,
+                    Name = groupName,
+                    UserIds = userIds
+                });
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
+        public bool AddNewMemberToTheGroup(string trustUserName, string groupName, int userId)
+        {
+            try
+            {
+                var group = _ctx.Groups
+                                .Where(x => x.TrustUserName == trustUserName)
+                                .Where(x => x.Name == groupName)
+                                .First();
+                group.UserIds.Add(userId);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
+
+        public bool RemoveMemberFromTheGroup(string trustUserName, string groupName, int userId)
+        {
+            try
+            {
+                var group = _ctx.Groups
+                                .Where(x => x.TrustUserName == trustUserName)
+                                .Where(x => x.Name == groupName)
+                                .First();
+                group.UserIds.Remove(userId);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
+
+        public bool Save()
+        {
+            try
+            {
+                _ctx.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         #endregion
     }
 }

@@ -16,8 +16,10 @@ namespace Kamban.API.Contacts
         public string MailID { get; set; }
         public string Website { get; set; }
         public string Role { get; set; }
+        public List<string> Groups { get; set; }
+        public string RegisteredUserId { get; set; }
 
-        public int TrustId { get; set; }
+        public string TrustUserName { get; set; }
 
     }
 }

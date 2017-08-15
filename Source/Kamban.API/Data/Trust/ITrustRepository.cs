@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Kamban.API.Contacts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,8 +9,11 @@ namespace Kamban.API.Trust
     public interface ITrustRepository
     {
         IQueryable<Trust> GetAllTrusts();
-        Trust GetTrustByID(int id);
+        
         bool AddNewTrust(Trust trust);
-        void Save();
+        Trust GetTrustByUserName(string userName);
+        bool AddNewContactToTrust(string trustUserName, Contact newContact);
+        bool AddNewGroup(string trustUserName, string groupName, List<int> userIds);
+        bool Save();
     }
 }
