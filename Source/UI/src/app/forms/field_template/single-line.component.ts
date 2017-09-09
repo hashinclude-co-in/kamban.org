@@ -11,14 +11,6 @@ export class SingleLineComponent {
     @Output() fieldClicked: EventEmitter<IFormField> = new EventEmitter<IFormField>();
 
     onClick(): void {
-        this.fieldClicked.emit(
-            {
-                'index': this.value.index,
-                'type': this.value.type,
-                'title': this.value.title,
-                'value': this.value.value,
-                'instruction': this.value.instruction
-            }
-        );
+        this.fieldClicked.emit(this.value);
     }
 }

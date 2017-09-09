@@ -4,4 +4,5 @@ export interface IFormField {
     title: string;
     value: string;
     instruction: string;
+    mandatory: boolean;
 }
