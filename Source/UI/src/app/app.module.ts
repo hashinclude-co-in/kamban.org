@@ -13,6 +13,8 @@ import { MultiLineComponent } from './forms/field_template/multi-line.component'
 import { SingleLinePropertyComponent } from './forms/properties_template/single-line-property.component';
 import { MultiLinePropertyComponent } from './forms/properties_template/multi-line-property.component';
 import { FormsModule } from '@angular/forms';
+import { NewFieldTemplateComponent } from './forms/field_template/new-field-template.component';
+import { FormPropertyComponent } from './forms/properties_template/form-property.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { FormsModule } from '@angular/forms';
     SingleLineComponent,
     MultiLineComponent,
     MultiLinePropertyComponent,
-    SingleLinePropertyComponent
+    SingleLinePropertyComponent,
+    NewFieldTemplateComponent,
+    FormPropertyComponent
   ],
   imports: [
     BrowserModule,
