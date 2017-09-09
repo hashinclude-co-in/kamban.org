@@ -18,14 +18,16 @@ export class NewFormComponent {
             'type': 'single-line-field',
             'title': 'test title 1 from component modified',
             'value': 'test value1',
-            'instruction': 'Sample instruction 1'
+            'instruction': 'Sample instruction 1',
+            'mandatory': false
         },
         {
             'index': 1,
             'type': 'multi-line-field',
             'title': 'test title 2  from component',
             'value': 'test value2',
-            'instruction': 'Sample instruction 2'
+            'instruction': 'Sample instruction 2',
+            'mandatory': false
         },
     ];
     selectedField: IFormField = this.fieldList[0];
