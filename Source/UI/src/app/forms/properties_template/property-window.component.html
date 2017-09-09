@@ -1,0 +1,9 @@
+<pm-single-line-property 
+[(value)]='typeValue' 
+*ngIf='typeValue && typeValue.type == "single-line-field"'>
+</pm-single-line-property>
+
+<pm-multi-line-property 
+[(value)]='typeValue'
+*ngIf='typeValue && typeValue.type == "multi-line-field"'>
+</pm-multi-line-property>
