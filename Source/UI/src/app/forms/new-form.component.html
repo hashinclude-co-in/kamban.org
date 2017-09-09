@@ -7,23 +7,20 @@
                         <h1>{{title}}</h1>
                         <h5>{{description}}</h5>
                     </div>
-                    <div class="alert alert-success" *ngFor='let field of fieldList' role="alert">
-                        <pm-single-line 
-                        *ngIf='field && field.type == "single-line-field"' 
-                        [value]='field'
-                        (fieldClicked)='onFieldClicked($event)'></pm-single-line>
-                        
-                        <pm-multi-line 
-                        *ngIf='field && field.type == "multi-line-field"' 
-                        [value]='field'
-                        (fieldClicked)='onFieldClicked($event)'>
-                        </pm-multi-line>
+                    <div class="alert alert-success" role="alert">
+                        <pm-new-field-template  [allFields]='fieldList' (fieldAdded)='newFieldAdded($event)'>
+                        </pm-new-field-template>
                     </div>
+                    <div *ngFor='let field of fieldList'>
+                        <pm-single-line *ngIf='field && field.type == "single-line-field"' [value]='field' (fieldClicked)='onFieldClicked($event)'></pm-single-line>
+                        <pm-multi-line *ngIf='field && field.type == "multi-line-field"' [value]='field' (fieldClicked)='onFieldClicked($event)'></pm-multi-line>
+                    </div>
+                    
                 </div>
             </div>
         </div>
     </div>
 </div>
 <div class="col-md-3">
-    <pm-property-window [(typeValue)] = 'selectedField'></pm-property-window>
+    <pm-property-window [(typeValue)]='selectedField'></pm-property-window>
 </div>
