@@ -8,32 +8,27 @@ import { FormsService } from './forms.service';
 })
 export class NewFormComponent {
     constructor(private _formsService: FormsService) {
-
     }
-    title: string = 'test title from component';
-    description: string = 'test description from component';
-    fieldList: IFormField[] = [
-        {
-            'index': 0,
-            'type': 'single-line-field',
-            'title': 'test title 1 from component modified',
-            'value': 'test value1',
-            'instruction': 'Sample instruction 1',
-            'mandatory': false
-        },
-        {
-            'index': 1,
-            'type': 'multi-line-field',
-            'title': 'test title 2  from component',
-            'value': 'test value2',
-            'instruction': 'Sample instruction 2',
-            'mandatory': false
-        },
-    ];
+
+    fieldList: IFormField[] = [{
+        'index': 0,
+        'type': 'form-field',
+        'title': 'Form title given by user.',
+        'value': 'Form description given by user.',
+        'instruction': '',
+        'mandatory': false
+    }];
     selectedField: IFormField = this.fieldList[0];
 
     onFieldClicked(message: IFormField): void {
         this.selectedField = message;
         this.fieldList[message.index] = message;
+    }
+    newFieldAdded(message: IFormField[]): void {
+        this.fieldList = message;
+        this.selectedField = this.fieldList[this.fieldList.length - 1];
+    }
+    onClick(): void {
+        this.selectedField = this.fieldList[0];
     }
 }

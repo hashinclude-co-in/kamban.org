@@ -13,7 +13,7 @@ export class NewFieldTemplateComponent {
     createSingleLine(): void {
         this.allFields.push({
             'index': this.allFields.length,
-            'type': 'pm-single-line',
+            'type': 'single-line-field',
             'title': 'Single Line',
             'value': 'Default Text',
             'instruction': 'Default Instruction',
@@ -24,7 +24,7 @@ export class NewFieldTemplateComponent {
     createMultiLine(): void {
         this.allFields.push({
             'index': this.allFields.length,
-            'type': 'pm-multi-line',
+            'type': 'multi-line-field',
             'title': 'Multi Line',
             'value': 'Default Text',
             'instruction': 'Default Instruction',
