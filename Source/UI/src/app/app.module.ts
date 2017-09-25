@@ -15,6 +15,9 @@ import { MultiLinePropertyComponent } from './forms/properties_template/multi-li
 import { FormsModule } from '@angular/forms';
 import { NewFieldTemplateComponent } from './forms/field_template/new-field-template.component';
 import { FormPropertyComponent } from './forms/properties_template/form-property.component';
+import { MyFormsComponent } from './home/my-forms.component';
+import { FormBuilderComponent } from './forms/form-builder.component';
+import { FormsService } from './forms/forms.service';
 
 @NgModule({
   declarations: [
@@ -27,18 +30,27 @@ import { FormPropertyComponent } from './forms/properties_template/form-property
     MultiLinePropertyComponent,
     SingleLinePropertyComponent,
     NewFieldTemplateComponent,
-    FormPropertyComponent
+    FormPropertyComponent,
+    MyFormsComponent,
+    FormBuilderComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-        { path: '', component: WelcomeComponent },
-        { path: '**', redirectTo: '', pathMatch: 'full'}
+
+      { path: 'builder/:formId', component: FormBuilderComponent },
+      { path: 'myforms', component: MyFormsComponent },
+      { path: 'newform', component: WelcomeComponent },
+      { path: '', redirectTo: 'myforms', pathMatch: 'full'  },
+      { path: '**', redirectTo: '', pathMatch: 'full' }
     ]),
     ProductModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [
+    FormsService
+  ]
 })
 export class AppModule { }

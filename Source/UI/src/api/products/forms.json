@@ -1,0 +1,26 @@
+[
+    {
+        "index": 0,
+        "title": "Title 1 from DB",
+        "value": "",
+        "instruction": "",
+        "mandatory": true,
+        "type": ""
+    },
+    {
+        "index": 1,
+        "title": "Title 2 from DB",
+        "value": "",
+        "instruction": "",
+        "mandatory": true,
+        "type": ""
+    },
+    {
+        "index": 2,
+        "title": "Title 3 from DB",
+        "value": "",
+        "instruction": "",
+        "mandatory": true,
+        "type": ""
+    },
+]

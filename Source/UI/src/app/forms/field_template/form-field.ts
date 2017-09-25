@@ -6,3 +6,10 @@ export interface IFormField {
     instruction: string;
     mandatory: boolean;
 }
+
+export interface IForm {
+    id: string;
+    title: string;
+    description: string;
+    fields: IFormField[];
+}

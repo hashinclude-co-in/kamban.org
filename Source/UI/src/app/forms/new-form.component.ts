@@ -1,34 +1,38 @@
-import { Component} from '@angular/core';
-import { IFormField } from './field_template/form-field';
+import { Component, OnInit } from '@angular/core';
+import { IFormField, IForm } from './field_template/form-field';
 import { FormsService } from './forms.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'pm-new-form',
     templateUrl: './new-form.component.html',
 })
-export class NewFormComponent {
-    constructor(private _formsService: FormsService) {
+export class NewFormComponent implements OnInit {
+
+    constructor(private _route: ActivatedRoute,
+        private _router: Router,
+        private _formsService: FormsService) {
     }
 
-    fieldList: IFormField[] = [{
-        'index': 0,
-        'type': 'form-field',
-        'title': 'Form title given by user.',
-        'value': 'Form description given by user.',
-        'instruction': '',
-        'mandatory': false
-    }];
-    selectedField: IFormField = this.fieldList[0];
+    public formUserName: string;
+    public form: IForm;
 
-    onFieldClicked(message: IFormField): void {
-        this.selectedField = message;
-        this.fieldList[message.index] = message;
+    ngOnInit() {
+        // TODO - Get all the saved forms under this user.
+        this.form = {
+            id: '',
+            title: '',
+            description: '',
+            fields: null
+        };
     }
-    newFieldAdded(message: IFormField[]): void {
-        this.fieldList = message;
-        this.selectedField = this.fieldList[this.fieldList.length - 1];
+
+    onCreateClick(): void {
+        // TODO - Create a new form in the server
+        this.form.id = this._formsService.addNewForm(this.form);
+        this._router.navigate(['/builder', this.form.id]);
     }
-    onClick(): void {
-        this.selectedField = this.fieldList[0];
+    onCancelClick(): void {
+        this._router.navigate(['/myforms']);
     }
 }

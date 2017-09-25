@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { IFormField } from '../field_template/form-field';
+import { IFormField, IForm } from '../field_template/form-field';
 
 @Component({
     selector: 'pm-property-window',
@@ -7,6 +7,7 @@ import { IFormField } from '../field_template/form-field';
 })
 export class PropertyWindowComponent {
     @Input() typeValue: IFormField;
+    @Input() formValue: IForm;
 
     @Output() valueChanged: EventEmitter<string> = new EventEmitter<string>();
 
