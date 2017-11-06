@@ -15,10 +15,10 @@
             <!-- Login for UserName and Password -->
             <form class="navbar-form navbar-right" role="search">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="UserName">
-                    <input type="text" class="form-control" placeholder="Password">
+                    <input type="text" class="form-control" placeholder="UserName"  [(ngModel)]='userName' (input)="userName=$event.target.value">
+                    <input type="text" class="form-control" placeholder="Password"  [(ngModel)]='password' (input)="password=$event.target.value">
                 </div>
-                <button type="submit" class="btn btn-default">Login</button>
+                <button type="submit" class="btn btn-default" (click)='onLoginClick()'>Login</button>
             </form>
             <!--/Login for UserName and Password -->
         </div>
@@ -46,6 +46,9 @@
         <!--/.nav-collapse -->
     </div>
 </nav>
+<p *ngIf='accessToken'>
+    {{accessToken}}
+</p>
 <!--/Product Header  -->
 
 <router-outlet></router-outlet>

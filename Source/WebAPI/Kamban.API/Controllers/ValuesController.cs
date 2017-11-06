@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Kamban.API.Controllers
 {
@@ -23,10 +24,15 @@ namespace Kamban.API.Controllers
         }
 
         // POST api/values
-        public void Post([FromBody]string value)
+        public string Post()
         {
+            return "CK";
         }
-
+        public string Post(int id)
+        {
+            return "CK";
+        }
+        
         // PUT api/values/5
         public void Put(int id, [FromBody]string value)
         {

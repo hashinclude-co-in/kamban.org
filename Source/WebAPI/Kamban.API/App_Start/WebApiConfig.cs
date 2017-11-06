@@ -6,6 +6,7 @@ using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
 using System.Net.Http.Formatting;
+using System.Web.Http.Cors;
 
 namespace Kamban.API
 {
@@ -24,17 +25,19 @@ namespace Kamban.API
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            config.Routes.MapHttpRoute(
-                name: "GroupsRouting",
-                routeTemplate: "api/trusts/{userName}/groups/{groupName}",
-                defaults: new { controller = "groups", groupName = RouteParameter.Optional }
-            );
+            //var cors = new EnableCorsAttribute("http://localhost:4200", "*", "*");
+            //config.EnableCors(cors);
+            //config.Routes.MapHttpRoute(
+            //    name: "GroupsRouting",
+            //    routeTemplate: "api/trusts/{userName}/groups/{groupName}",
+            //    defaults: new { controller = "groups", groupName = RouteParameter.Optional }
+            //);
 
-            config.Routes.MapHttpRoute(
-                name: "TrustRouting",
-                routeTemplate: "api/trusts/{userName}",
-                defaults: new { controller="trusts", userName = RouteParameter.Optional }
-            );
+            //config.Routes.MapHttpRoute(
+            //    name: "TrustRouting",
+            //    routeTemplate: "api/trusts/{userName}",
+            //    defaults: new { controller="trusts", userName = RouteParameter.Optional }
+            //);
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

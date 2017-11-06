@@ -327,7 +327,7 @@ namespace Kamban.API.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest("Bad Request CK1");
             }
             
             var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email };
@@ -336,7 +336,7 @@ namespace Kamban.API.Controllers
 
             if (!result.Succeeded)
             {
-                return GetErrorResult(result);
+                return BadRequest("Bad Request CK2");
             }
 
             return Ok();

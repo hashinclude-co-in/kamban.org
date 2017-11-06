@@ -1,0 +1,7 @@
+*.dll
+*.exe
+Source/WebAPI/Kamban.API/obj/
+Source/WebAPI/packages/
+Source/WebAPI/Kamban.API/bin/
+Source/WebAPI/.vs/
+Source/WebAPI/Kamban.API/Kamban.API.csproj.user

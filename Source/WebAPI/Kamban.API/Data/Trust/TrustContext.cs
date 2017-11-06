@@ -1,4 +1,5 @@
 ﻿using Kamban.API.Contacts;
+using Kamban.API.Data.Forms;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -26,5 +27,6 @@ namespace Kamban.API.Trust
         public DbSet<Trust> Trusts { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Groups> Groups { get; set; }
+        public DbSet<Form> Forms { get; set; }
     }
 }

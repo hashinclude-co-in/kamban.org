@@ -14,7 +14,6 @@ export class NewFormComponent implements OnInit {
         private _formsService: FormsService) {
     }
 
-    public formUserName: string;
     public form: IForm;
 
     ngOnInit() {
@@ -28,7 +27,6 @@ export class NewFormComponent implements OnInit {
     }
 
     onCreateClick(): void {
-        // TODO - Create a new form in the server
         this.form.id = this._formsService.addNewForm(this.form);
         this._router.navigate(['/builder', this.form.id]);
     }

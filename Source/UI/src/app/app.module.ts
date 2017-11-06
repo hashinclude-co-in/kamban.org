@@ -18,6 +18,7 @@ import { FormPropertyComponent } from './forms/properties_template/form-property
 import { MyFormsComponent } from './home/my-forms.component';
 import { FormBuilderComponent } from './forms/form-builder.component';
 import { FormsService } from './forms/forms.service';
+import { CommonService } from './shared/common.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { FormsService } from './forms/forms.service';
   ],
   bootstrap: [AppComponent],
   providers: [
-    FormsService
+    FormsService,
+    CommonService
   ]
 })
 export class AppModule { }

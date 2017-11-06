@@ -1,4 +1,5 @@
 ﻿using Kamban.API.Contacts;
+using Kamban.API.Data.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,9 @@ namespace Kamban.API.Trust
         Trust GetTrustByUserName(string userName);
         bool AddNewContactToTrust(string trustUserName, Contact newContact);
         bool AddNewGroup(string trustUserName, string groupName, List<int> userIds);
+        Form GetFormByFormId(string userId, string id);
+        IQueryable<Form> GetAllForm(string userId);
+        bool AddNewForm(Form form);
         bool Save();
     }
 }

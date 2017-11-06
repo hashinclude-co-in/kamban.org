@@ -1,4 +1,5 @@
-﻿using System.Data.Entity.Migrations;
+﻿using Kamban.API.Models;
+using System.Data.Entity.Migrations;
 
 namespace Kamban.API.Trust
 {
@@ -11,6 +12,20 @@ namespace Kamban.API.Trust
             this.AutomaticMigrationsEnabled = true;
         }
         protected override void Seed(TrustContext context)
+        {
+            base.Seed(context);
+        }
+    }
+
+    public class ApplicationDbContextMigrationsConfiguration
+        : DbMigrationsConfiguration<ApplicationDbContext>
+    {
+        public ApplicationDbContextMigrationsConfiguration()
+        {
+            this.AutomaticMigrationDataLossAllowed = true;
+            this.AutomaticMigrationsEnabled = true;
+        }
+        protected override void Seed(ApplicationDbContext context)
         {
             base.Seed(context);
         }

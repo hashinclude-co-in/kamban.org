@@ -11,23 +11,19 @@ export class FormBuilderComponent implements OnInit {
     constructor(private _route: ActivatedRoute,
         private _router: Router,
         private _formsService: FormsService) {
-      }
+    }
 
 
-    fieldList: IFormField[] = [{
-        'index': 0,
-        'type': 'form-field',
-        'title': 'Form title given by user.',
-        'value': 'Form description given by user.',
-        'instruction': '',
-        'mandatory': false
-    }];
-    selectedField: IFormField = this.fieldList[0];
+    fieldList: IFormField[] = [];
+    selectedField: IFormField;
     form: IForm;
 
     ngOnInit() {
         const formId: string = this._route.snapshot.paramMap.get('formId').toString();
         this.form = this._formsService.getForm(formId);
+        if (this.form === undefined) {
+            this._router.navigate(['/newform']);
+        }
     }
 
     onFieldClicked(message: IFormField): void {

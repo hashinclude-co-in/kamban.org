@@ -10,9 +10,9 @@ namespace Kamban.API.Controllers
     public class HomeController : Controller
     {
         ITrustRepository _repo;
-        public HomeController(ITrustRepository repo)
+        public HomeController()
         {
-            _repo = repo;
+            _repo = new TrustRepository(new TrustContext());
         }
         public ActionResult Index()
         {

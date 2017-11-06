@@ -9,7 +9,6 @@ namespace Kamban.API.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-        public string UserNameOfUser { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -22,7 +21,12 @@ namespace Kamban.API.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
+            #if DEBUG
             : base("DefaultConnection", throwIfV1Schema: false)
+#else
+            : base("AzureDBConnection", throwIfV1Schema: false)
+            
+#endif
         {
         }
         

@@ -1,4 +1,5 @@
 ﻿using Kamban.API.Contacts;
+using Kamban.API.Data.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -139,6 +140,48 @@ namespace Kamban.API.Trust
 
         }
 
+
+        #region Forms
+        public bool AddNewForm(Form form)
+        {
+            try
+            {
+                _ctx.Forms.Add(form);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public Form GetFormByFormId(string userId, string id)
+        {
+            try
+            {
+                return _ctx.Forms.Where(x => x.Id == id)
+                                .Where(x=>x.UserId == userId)
+                                .First();
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public IQueryable<Form> GetAllForm(string userId)
+        {
+            try
+            {
+                return _ctx.Forms
+                            .Where(x=>x.UserId == userId);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        #endregion
         public bool Save()
         {
             try
@@ -146,7 +189,7 @@ namespace Kamban.API.Trust
                 _ctx.SaveChanges();
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
                 return false;
             }
