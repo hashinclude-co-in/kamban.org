@@ -9,7 +9,6 @@ using System.Web.Http;
 
 namespace Kamban.API.Controllers
 {
-    [Authorize]
     public class FormsController : ApiController
     {
         private ITrustRepository _repo;

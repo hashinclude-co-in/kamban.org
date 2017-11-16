@@ -8,15 +8,21 @@ using System.Web.Http.Cors;
 
 namespace Kamban.API.Controllers
 {
-    [Authorize]
+    public class Form1
+    {
+        public string id;
+        public string title;
+        public string description;
+    }
     public class ValuesController : ApiController
     {
         // GET api/values
-        public IEnumerable<string> Get()
+        public Form1 Get()
         {
-            return new string[] { "value1", "value2" };
+            return new Form1 {id="dummyID", description="dummyDescription",title="dummyTitle" };
         }
 
+        [Authorize]
         // GET api/values/5
         public string Get(int id)
         {
@@ -28,6 +34,7 @@ namespace Kamban.API.Controllers
         {
             return "CK";
         }
+        [Authorize]
         public string Post(int id)
         {
             return "CK";

@@ -25,19 +25,19 @@ namespace Kamban.API
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            //var cors = new EnableCorsAttribute("http://localhost:4200", "*", "*");
-            //config.EnableCors(cors);
-            //config.Routes.MapHttpRoute(
-            //    name: "GroupsRouting",
-            //    routeTemplate: "api/trusts/{userName}/groups/{groupName}",
-            //    defaults: new { controller = "groups", groupName = RouteParameter.Optional }
-            //);
+            var cors = new EnableCorsAttribute("http://localhost:4200", "*", "*");
+            config.EnableCors(cors);
+            config.Routes.MapHttpRoute(
+                name: "GroupsRouting",
+                routeTemplate: "api/trusts/{userName}/groups/{groupName}",
+                defaults: new { controller = "groups", groupName = RouteParameter.Optional }
+            );
 
-            //config.Routes.MapHttpRoute(
-            //    name: "TrustRouting",
-            //    routeTemplate: "api/trusts/{userName}",
-            //    defaults: new { controller="trusts", userName = RouteParameter.Optional }
-            //);
+            config.Routes.MapHttpRoute(
+                name: "TrustRouting",
+                routeTemplate: "api/trusts/{userName}",
+                defaults: new { controller = "trusts", userName = RouteParameter.Optional }
+            );
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
