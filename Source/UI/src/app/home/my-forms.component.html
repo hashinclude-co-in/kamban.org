@@ -6,9 +6,9 @@
         </div>
     </div>
     <!-- list of forms -->
-    <div class="panel panel-default">
+    <div class="panel panel-default" *ngFor='let form of forms'>
         <div class="panel-body">
-            Form 1
+            {{form.title}}
         </div>
     </div>
 </div>

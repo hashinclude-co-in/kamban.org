@@ -7,6 +7,8 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 
 import { IFormField, IForm } from './field_template/form-field';
+import { CommonService } from '../shared/common.service';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class FormsService {
@@ -15,7 +17,8 @@ export class FormsService {
     private _forms: IForm[] = [];
     private _form: IForm;
 
-    constructor(private _http: HttpClient) { }
+    constructor(private _http: HttpClient,
+        private _commonService: CommonService) { }
 
     getAllProducts(): IFormField[] {
         return [
@@ -65,15 +68,43 @@ export class FormsService {
         return Observable.throw(errorMessage);
     }
 
-    addNewForm(form: IForm): string {
+    addNewForm(form: IForm): Observable<string> {
         // TODO - Create new form, add it to the DB and return form user name
         this._form = form;
         this._form.id = form.title.replace(/ /g, '');
-        this._forms.push(this._form);
-        return this._form.id;
+
+        // return this._form.id;
+
+        const body = form;
+        const authToken = localStorage.getItem('auth_token');
+        const headers = new HttpHeaders({ 'Authorization': `Bearer ${authToken}`});
+        headers.append('Content-Type', 'application/json');
+
+        return this._http.post(this._commonService.baseURL + 'api/forms',
+            body, {
+                headers: headers
+            })
+            .do(data => {
+                this._forms.push(this._form);
+                return this._form.id;
+            })
+            .catch(this.handleError);
     }
 
     getForm(formId: string): IForm {
         return this._forms.filter(x => x.id === formId)[0];
+    }
+
+    getAllForms(): Observable<IFormField[]> {
+        const authToken = localStorage.getItem('auth_token');
+        const headers = new HttpHeaders({ 'Authorization': `Bearer ${authToken}`});
+        headers.append('Content-Type', 'application/json');
+
+        return this._http.get<IFormField[]>(this._commonService.baseURL + 'api/forms',
+            {
+                 headers: headers
+            })
+            .do(data => console.log('All: ' + JSON.stringify(data)))
+            .catch(this.handleError);
     }
 }

@@ -15,6 +15,7 @@ export class NewFormComponent implements OnInit {
     }
 
     public form: IForm;
+    errorMessage: string;
 
     ngOnInit() {
         // TODO - Get all the saved forms under this user.
@@ -27,8 +28,15 @@ export class NewFormComponent implements OnInit {
     }
 
     onCreateClick(): void {
-        this.form.id = this._formsService.addNewForm(this.form);
-        this._router.navigate(['/builder', this.form.id]);
+        this._formsService.addNewForm(this.form).subscribe(
+            forms => {
+                this.form.id = forms;
+                this._router.navigate(['/builder', this.form.id]);
+          },
+            error => {this.errorMessage = <any>error;
+              alert(this.errorMessage);
+            });
+
     }
     onCancelClick(): void {
         this._router.navigate(['/myforms']);

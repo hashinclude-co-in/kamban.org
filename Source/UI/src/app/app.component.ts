@@ -21,12 +21,16 @@ export class AppComponent {
 
   onLoginClick(): void {
     // this._commonService.getAccessToken(this.userName, this.password);
-    // this._commonService.getAccessToken(this.userName, this.password).subscribe(
-    //   product => this.accessToken = product,
-    //   error => this.errorMessage = <any>error);
+    this._commonService.loginService(this.userName, this.password).subscribe(
+      product => {this.accessToken = product.access_token;
+      alert(this.accessToken);
+    },
+      error => {this.errorMessage = <any>error;
+        alert(this.errorMessage);
+      });
 
-      this._commonService.getValues().subscribe(
-        product => this.accessToken = product,
-        error => this.errorMessage = <any>error);
+      // this._commonService.getValues().subscribe(
+      //   product => this.accessToken = product,
+      //   error => this.errorMessage = <any>error);
   }
 }
