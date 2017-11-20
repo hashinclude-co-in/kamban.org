@@ -13,7 +13,7 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <!-- Login for UserName and Password -->
-            <form class="navbar-form navbar-right" role="search">
+            <form class="navbar-form navbar-right" role="search" *ngIf='!accessToken'>
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="UserName"  [(ngModel)]='userName' [ngModelOptions]='{standalone: true}' (input)="userName=$event.target.value">
                     <input type="text" class="form-control" placeholder="Password"  [(ngModel)]='password' [ngModelOptions]='{standalone: true}' (input)="password=$event.target.value">
@@ -21,6 +21,12 @@
                 <button type="submit" class="btn btn-default" (click)='onLoginClick()'>Login</button>
             </form>
             <!--/Login for UserName and Password -->
+
+            <!-- After logged in -->
+            <form class="navbar-form navbar-right" role="search" *ngIf='accessToken'>
+                <button type="submit" class="btn btn-default" (click)='onLogoutClick()'>Logout</button>
+            </form>
+            <!--/After logged in -->
         </div>
         <!--/.nav-collapse -->
     </div>
@@ -46,9 +52,6 @@
         <!--/.nav-collapse -->
     </div>
 </nav>
-<p *ngIf='accessToken'>
-    {{accessToken}}
-</p>
 <!--/Product Header  -->
 
 <router-outlet></router-outlet>

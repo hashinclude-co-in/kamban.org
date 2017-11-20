@@ -11,7 +11,6 @@ export class AppComponent {
   constructor(private _commonService: CommonService) {
     this.userName = '';
     this.password = '';
-    this.accessToken = 'Dummy';
   }
   pageTitle: string = 'Kamban';
   userName: string;
@@ -23,7 +22,6 @@ export class AppComponent {
     // this._commonService.getAccessToken(this.userName, this.password);
     this._commonService.loginService(this.userName, this.password).subscribe(
       product => {this.accessToken = product.access_token;
-      alert(this.accessToken);
     },
       error => {this.errorMessage = <any>error;
         alert(this.errorMessage);
@@ -32,5 +30,10 @@ export class AppComponent {
       // this._commonService.getValues().subscribe(
       //   product => this.accessToken = product,
       //   error => this.errorMessage = <any>error);
+  }
+
+  onLogoutClick(): void {
+    this.accessToken = null;
+    localStorage.clear();
   }
 }

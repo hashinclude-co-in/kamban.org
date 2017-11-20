@@ -31,7 +31,8 @@ export class NewFormComponent implements OnInit {
         this._formsService.addNewForm(this.form).subscribe(
             forms => {
                 this.form.id = forms;
-                this._router.navigate(['/builder', this.form.id]);
+                // this._router.navigate(['/builder', this.form.id]);
+                this._router.navigate(['/myforms']);
           },
             error => {this.errorMessage = <any>error;
               alert(this.errorMessage);
