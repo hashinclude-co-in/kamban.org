@@ -25,8 +25,8 @@ namespace Kamban.API
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            var cors = new EnableCorsAttribute("http://localhost:4200", "*", "*");
-            config.EnableCors(cors);
+            //var cors = new EnableCorsAttribute("http://localhost:4200", "*", "*");
+            //config.EnableCors(cors);
             config.Routes.MapHttpRoute(
                 name: "GroupsRouting",
                 routeTemplate: "api/trusts/{userName}/groups/{groupName}",
