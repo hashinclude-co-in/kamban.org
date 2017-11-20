@@ -13,6 +13,7 @@ namespace Kamban.API.App_Start
     using Trust;
     using System.Web.Http;
     using WebApiContrib.IoC.Ninject;
+    using Ninject.Web.Common.WebHost;
 
     public static class NinjectWebCommon 
     {
