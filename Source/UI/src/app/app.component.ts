@@ -12,24 +12,19 @@ export class AppComponent {
     this.userName = '';
     this.password = '';
   }
-  pageTitle: string = 'Kamban';
-  userName: string;
-  password: string;
+  pageTitle: string = 'localhost';
+  userName: string = 'ckind90';
+  password: string = 'P@ssword123';
   accessToken: string;
   errorMessage: any;
 
   onLoginClick(): void {
-    // this._commonService.getAccessToken(this.userName, this.password);
     this._commonService.loginService(this.userName, this.password).subscribe(
       product => {this.accessToken = product.access_token;
     },
       error => {this.errorMessage = <any>error;
         alert(this.errorMessage);
       });
-
-      // this._commonService.getValues().subscribe(
-      //   product => this.accessToken = product,
-      //   error => this.errorMessage = <any>error);
   }
 
   onLogoutClick(): void {

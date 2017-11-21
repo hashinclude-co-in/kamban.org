@@ -17,10 +17,20 @@ export class FormBuilderComponent implements OnInit {
     fieldList: IFormField[] = [];
     selectedField: IFormField;
     form: IForm;
+    errorMessage: string;
 
     ngOnInit() {
         const formId: string = this._route.snapshot.paramMap.get('formId').toString();
-        this.form = this._formsService.getForm(formId);
+        this._formsService.getForm(formId).subscribe(
+            forms => {
+                this.form = forms;
+          },
+            error => {this.errorMessage = <any>error;
+              alert(this.errorMessage);
+            });
+
+
+        // this.form = this._formsService.getForm(formId);
         if (this.form === undefined) {
             this._router.navigate(['/newform']);
         }

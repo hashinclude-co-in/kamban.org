@@ -46,6 +46,13 @@ export class CommonService {
         return null;
     }
 
+    isLoggedIn(): boolean {
+        if (this.cookie !== null && this.cookie.access_token !== null) {
+            return true;
+        }
+        return false;
+    }
+
     private handleError(err: HttpErrorResponse) {
         // in a real world app, we may send the server to some remote logging infrastructure
         // instead of just logging it to the console

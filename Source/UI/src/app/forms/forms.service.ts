@@ -91,8 +91,19 @@ export class FormsService {
             .catch(this.handleError);
     }
 
-    getForm(formId: string): IForm {
-        return this._forms.filter(x => x.id === formId)[0];
+    getForm(formId: string): Observable<IForm> {
+        // return this._forms.filter(x => x.id === formId)[0];
+
+        const authToken = localStorage.getItem('auth_token');
+        const headers = new HttpHeaders({ 'Authorization': `Bearer ${authToken}`});
+        headers.append('Content-Type', 'application/json');
+
+        return this._http.get<IForm>(this._commonService.baseURL + 'api/forms/' + formId,
+            {
+                 headers: headers
+            })
+            .do(data => console.log('All: ' + JSON.stringify(data)))
+            .catch(this.handleError);
     }
 
     getAllForms(): Observable<IFormField[]> {
