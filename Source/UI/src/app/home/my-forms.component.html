@@ -6,9 +6,7 @@
         </div>
     </div>
     <!-- list of forms -->
-    <div class="panel panel-default" *ngFor='let form of forms'>
-        <div class="panel-body">
-            {{form.title}}
-        </div>
-    </div>
+    <pm-single-form-card *ngFor='let form of forms' [value]='form' (clickEmit)='onFormClick($event)'style="cursor:pointer" >
+
+    </pm-single-form-card>
 </div>

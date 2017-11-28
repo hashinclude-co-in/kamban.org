@@ -29,6 +29,6 @@ export class AppComponent {
 
   onLogoutClick(): void {
     this.accessToken = null;
-    localStorage.clear();
+    this._commonService.logoutService();
   }
 }

@@ -1,14 +1,15 @@
 <div class="col-md-8">
     <div class="panel panel-primary">
         <div class="panel-body">
-            <div class="row">
+            <div class="row" *ngIf='form'>
                 <div class="crop">
                     <div class="page-header" (click)='onClick()' style="cursor: pointer">
+                            <button type="button" class="btn btn-default" (click)='onSaveClick()'>Save</button>
                         <h1>{{form.title}}</h1>
                         <h5>{{form.description}}</h5>
                     </div>
                     <div class="alert alert-success" role="alert">
-                        <pm-new-field-template  [allFields]='fieldList' (fieldAdded)='newFieldAdded($event)'>
+                        <pm-new-field-template [allFields]='fieldList' (fieldAdded)='newFieldAdded($event)'>
                         </pm-new-field-template>
                     </div>
                     <div *ngFor='let field of fieldList'>

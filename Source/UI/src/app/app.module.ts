@@ -19,6 +19,7 @@ import { MyFormsComponent } from './home/my-forms.component';
 import { FormBuilderComponent } from './forms/form-builder.component';
 import { FormsService } from './forms/forms.service';
 import { CommonService } from './shared/common.service';
+import { SingleFormCardComponent } from './home/single-form-card.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { CommonService } from './shared/common.service';
     NewFieldTemplateComponent,
     FormPropertyComponent,
     MyFormsComponent,
-    FormBuilderComponent
+    FormBuilderComponent,
+    SingleFormCardComponent
   ],
   imports: [
     BrowserModule,

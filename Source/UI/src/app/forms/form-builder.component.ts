@@ -30,10 +30,10 @@ export class FormBuilderComponent implements OnInit {
             });
 
 
-        // this.form = this._formsService.getForm(formId);
-        if (this.form === undefined) {
-            this._router.navigate(['/newform']);
-        }
+        // // this.form = this._formsService.getForm(formId);
+        // if (this.form === undefined) {
+        //     this._router.navigate(['/newform']);
+        // }
     }
 
     onFieldClicked(message: IFormField): void {
@@ -46,5 +46,9 @@ export class FormBuilderComponent implements OnInit {
     }
     onClick(): void {
         this.selectedField = null;
+    }
+
+    onSaveClick(): void {
+        // TODO code to save the updated field
     }
 }
