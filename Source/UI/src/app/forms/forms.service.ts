@@ -73,7 +73,7 @@ export class FormsService {
 
         const body = form;
         const authToken = this._commonService.getAccessToken();
-        const headers = new HttpHeaders({ 'Authorization': `Bearer ${authToken}`});
+        const headers = new HttpHeaders({ 'Authorization': `Bearer ${authToken}` });
         headers.append('Content-Type', 'application/json');
 
         return this._http.post(this._commonService.baseURL + 'api/forms',
@@ -90,38 +90,40 @@ export class FormsService {
     getForm(formId: string): Observable<IForm> {
 
         const authToken = this._commonService.getAccessToken();
-        const headers = new HttpHeaders({ 'Authorization': `Bearer ${authToken}`});
+        const headers = new HttpHeaders({ 'Authorization': `Bearer ${authToken}` });
         headers.append('Content-Type', 'application/json');
 
         return this._http.get<IForm>(this._commonService.baseURL + 'api/forms/' + formId,
             {
-                 headers: headers
+                headers: headers
             })
             .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
     updateForm(form: IForm): Observable<boolean> {
-        alert('form.service.ts -> Not yet implemented exception');
+
+        const body = form;
         const authToken = this._commonService.getAccessToken();
-        const headers = new HttpHeaders({ 'Authorization': `Bearer ${authToken}`});
+        const headers = new HttpHeaders({ 'Authorization': `Bearer ${authToken}` });
         headers.append('Content-Type', 'application/json');
 
         return this._http.patch<boolean>(this._commonService.baseURL + 'api/forms/',
+            body,
             {
-                 headers: headers
+                headers: headers
             })
             .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
     getAllForms(): Observable<IForm[]> {
         const authToken = this._commonService.getAccessToken();
-        const headers = new HttpHeaders({ 'Authorization': `Bearer ${authToken}`});
+        const headers = new HttpHeaders({ 'Authorization': `Bearer ${authToken}` });
         headers.append('Content-Type', 'application/json');
 
         return this._http.get<IForm[]>(this._commonService.baseURL + 'api/forms',
             {
-                 headers: headers
+                headers: headers
             })
             .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);

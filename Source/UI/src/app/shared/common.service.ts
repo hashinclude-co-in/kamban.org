@@ -13,8 +13,8 @@ import { ICookie } from './cookie-template';
 export class CommonService {
 
     cookie: ICookie = null;
-    baseURL: string = 'http://localhost:61799/';
-    // baseURL: string = 'http://kbn.azurewebsites.net';
+     baseURL: string = 'http://localhost:61798/';
+    // baseURL: string = 'http://webappwk.azurewebsites.net/';
     constructor(private _http: HttpClient) {
     }
 
@@ -29,13 +29,14 @@ export class CommonService {
             })
             .do(data => {
                 this.cookie = <ICookie> data;
-                localStorage.setItem('auth_token', this.cookie.access_token);
+                sessionStorage.setItem('auth_token', this.cookie.access_token);
             })
             .catch(this.handleError);
     }
 
     logoutService(): boolean {
         this.cookie = null;
+        sessionStorage.clear();
         return true;
     }
 
@@ -43,6 +44,7 @@ export class CommonService {
         if (this.cookie !== null && this.cookie.access_token !== null) {
             return this.cookie.access_token;
         }
+        alert('Access Token is null');
         return null;
     }
 

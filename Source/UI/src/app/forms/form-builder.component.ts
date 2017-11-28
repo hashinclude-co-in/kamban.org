@@ -24,9 +24,11 @@ export class FormBuilderComponent implements OnInit {
         this._formsService.getForm(formId).subscribe(
             forms => {
                 this.form = forms;
-          },
-            error => {this.errorMessage = <any>error;
-              alert(this.errorMessage);
+                this.fieldList = forms.fields;
+            },
+            error => {
+            this.errorMessage = <any>error;
+                alert(this.errorMessage);
             });
 
 
@@ -49,6 +51,15 @@ export class FormBuilderComponent implements OnInit {
     }
 
     onSaveClick(): void {
+        this.form.fields = this.fieldList;
         // TODO code to save the updated field
+        this._formsService.updateForm(this.form).subscribe(
+            forms => {
+                // do something after save
+            },
+            error => {
+            this.errorMessage = <any>error;
+                alert(this.errorMessage);
+            });
     }
 }
