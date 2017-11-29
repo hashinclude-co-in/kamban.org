@@ -9,6 +9,11 @@ export class MultiLineComponent {
     @Input() value: IFormField;
 
     @Output() fieldClicked: EventEmitter<IFormField> = new EventEmitter<IFormField>();
+    @Output() deleteClicked: EventEmitter<IFormField> = new EventEmitter<IFormField>();
+
+    onDeleteClick(): void {
+        this.deleteClicked.emit(this.value);
+    }
 
     onClick(): void {
         this.fieldClicked.emit(this.value);

@@ -1,4 +1,5 @@
 export interface IFormField {
+    id: string;
     index: number;
     type: string;
     title: string;

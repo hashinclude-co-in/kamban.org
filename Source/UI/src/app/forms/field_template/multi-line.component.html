@@ -1,7 +1,9 @@
 <div class="alert alert-success" role="alert">
-    <div class="form-group" (click)='onClick()' style="cursor: pointer">
-        <label style="cursor: pointer">{{value.title}}</label>
-        <textarea class="form-control" style="resize: vertical; cursor: pointer" value={{value.value}} readonly rows="3"></textarea>
-        <small style="font-style: italic">{{value.instruction}}</small>
+    <div><button type="button" class="btn btn-default" (click)='onDeleteClick()'>Delete</button>
+        <div class="form-group" (click)='onClick()' style="cursor: pointer">
+            <label style="cursor: pointer">{{value.title}}</label>
+            <textarea class="form-control" style="resize: vertical; cursor: pointer" value={{value.value}} readonly rows="3"></textarea>
+            <small style="font-style: italic">{{value.instruction}}</small>
+        </div>
     </div>
 </div>

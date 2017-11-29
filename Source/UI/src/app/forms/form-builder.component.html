@@ -13,8 +13,8 @@
                         </pm-new-field-template>
                     </div>
                     <div *ngFor='let field of fieldList'>
-                        <pm-single-line *ngIf='field && field.type == "single-line-field"' [value]='field' (fieldClicked)='onFieldClicked($event)'></pm-single-line>
-                        <pm-multi-line *ngIf='field && field.type == "multi-line-field"' [value]='field' (fieldClicked)='onFieldClicked($event)'></pm-multi-line>
+                        <pm-single-line *ngIf='field && field.type == "single-line-field"' [value]='field' (fieldClicked)='onFieldClicked($event)' (deleteClicked)='onFieldDeleteClicked($event)'></pm-single-line>
+                        <pm-multi-line *ngIf='field && field.type == "multi-line-field"' [value]='field' (fieldClicked)='onFieldClicked($event)' (deleteClicked)='onFieldDeleteClicked($event)'></pm-multi-line>
                     </div>
                 </div>
             </div>

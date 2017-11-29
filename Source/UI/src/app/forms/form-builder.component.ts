@@ -24,7 +24,7 @@ export class FormBuilderComponent implements OnInit {
         this._formsService.getForm(formId).subscribe(
             forms => {
                 this.form = forms;
-                this.fieldList = forms.fields;
+                this.fieldList = forms.fields.sort((a: IFormField, b: IFormField) => a.index < b.index ? -1 : 1);
             },
             error => {
             this.errorMessage = <any>error;
@@ -41,6 +41,16 @@ export class FormBuilderComponent implements OnInit {
     onFieldClicked(message: IFormField): void {
         this.selectedField = message;
         this.fieldList[message.index] = message;
+    }
+    onFieldDeleteClicked(formField: IFormField): void {
+        this._formsService.deleteFormField(this.form.id, formField.id).subscribe(
+            forms => {
+               // this.fieldList = this.fieldList.filter(e => e.index !== formField.index);
+            },
+            error => {
+                this.errorMessage = <any>error;
+                alert(this.errorMessage);
+            });
     }
     newFieldAdded(message: IFormField[]): void {
         this.fieldList = message;

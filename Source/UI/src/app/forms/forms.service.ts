@@ -20,26 +20,6 @@ export class FormsService {
     constructor(private _http: HttpClient,
         private _commonService: CommonService) { }
 
-    getAllProducts(): IFormField[] {
-        return [
-            {
-                index: 0,
-                title: '',
-                value: '',
-                instruction: '',
-                mandatory: true,
-                type: ''
-            },
-            {
-                index: 0,
-                title: '',
-                value: '',
-                instruction: '',
-                mandatory: true,
-                type: ''
-            }
-        ];
-    }
 
     getProducts(): Observable<IFormField[]> {
         return this._http.get<IFormField[]>(this._productUrl)
@@ -102,7 +82,6 @@ export class FormsService {
     }
 
     updateForm(form: IForm): Observable<boolean> {
-
         const body = form;
         const authToken = this._commonService.getAccessToken();
         const headers = new HttpHeaders({ 'Authorization': `Bearer ${authToken}` });
@@ -110,6 +89,34 @@ export class FormsService {
 
         return this._http.patch<boolean>(this._commonService.baseURL + 'api/forms/',
             body,
+            {
+                headers: headers
+            })
+            .do(data => console.log('All: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    deleteForm(formid: string): Observable<boolean> {
+
+        const authToken = this._commonService.getAccessToken();
+        const headers = new HttpHeaders({ 'Authorization': `Bearer ${authToken}` });
+        headers.append('Content-Type', 'application/json');
+
+        return this._http.delete<boolean>(this._commonService.baseURL + 'api/forms/' + formid,
+            {
+                headers: headers
+            })
+            .do(data => console.log('All: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    deleteFormField(formid: string, formFieldId: string): Observable<boolean> {
+
+        const authToken = this._commonService.getAccessToken();
+        const headers = new HttpHeaders({ 'Authorization': `Bearer ${authToken}` });
+        headers.append('Content-Type', 'application/json');
+
+        return this._http.delete<boolean>(this._commonService.baseURL + 'api/forms/' + formid + '/' + formFieldId,
             {
                 headers: headers
             })

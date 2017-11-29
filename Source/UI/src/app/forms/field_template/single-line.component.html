@@ -1,7 +1,10 @@
 <div class="alert alert-success" role="alert">
-    <div class="form-group" (click)='onClick()' style="cursor: pointer">
-        <label style="cursor: pointer">{{value.title}}</label>
-        <input type="text" class="form-control" value={{value.value}} style="cursor: pointer">
-        <small style="font-style: italic">{{value.instruction}}</small>
+    <div>
+            <button type="button" class="btn btn-default" (click)='onDeleteClick()'>Delete</button>
+        <div class="form-group" (click)='onClick()' style="cursor: pointer">
+            <label style="cursor: pointer">{{value.title}}</label>
+            <input type="text" class="form-control" value={{value.value}} style="cursor: pointer">
+            <small style="font-style: italic">{{value.instruction}}</small>
+        </div>
     </div>
 </div>
