@@ -26,6 +26,18 @@ export class MyFormsComponent implements OnInit {
     }
 
     onFormClick(value: string): void {
+        alert('Form  clicked');
         this._router.navigate(['/builder', value]);
+    }
+
+    onFormDeleteClick(formId: string): void {
+        alert('Form delete button clicked');
+        this._formService.deleteForm(formId).subscribe(
+            forms => {
+            },
+            error => {
+                this.errorMessage = <any>error;
+                alert(this.errorMessage);
+            });
     }
 }

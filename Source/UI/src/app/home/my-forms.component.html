@@ -6,7 +6,7 @@
         </div>
     </div>
     <!-- list of forms -->
-    <pm-single-form-card *ngFor='let form of forms' [value]='form' (clickEmit)='onFormClick($event)'style="cursor:pointer" >
+    <pm-single-form-card *ngFor='let form of forms' [form]='form' (clickEmit)='onFormClick($event)' (deleteFormClickEmit)='onFormDeleteClick($event)' style="cursor:pointer" >
 
     </pm-single-form-card>
 </div>

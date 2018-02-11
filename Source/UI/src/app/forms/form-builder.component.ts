@@ -62,7 +62,6 @@ export class FormBuilderComponent implements OnInit {
 
     onSaveClick(): void {
         this.form.fields = this.fieldList;
-        // TODO code to save the updated field
         this._formsService.updateForm(this.form).subscribe(
             forms => {
                 // do something after save
@@ -71,5 +70,9 @@ export class FormBuilderComponent implements OnInit {
             this.errorMessage = <any>error;
                 alert(this.errorMessage);
             });
+    }
+
+    onPreviewClick(): void {
+        // Preview
     }
 }

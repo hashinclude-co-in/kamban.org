@@ -13,8 +13,8 @@ import { ICookie } from './cookie-template';
 export class CommonService {
 
     cookie: ICookie = null;
-     baseURL: string = 'http://localhost:61798/';
-    // baseURL: string = 'http://webappwk.azurewebsites.net/';
+    // baseURL: string = 'http://localhost:61799/';
+     baseURL: string = 'http://cktestweb.azurewebsites.net/';
     constructor(private _http: HttpClient) {
     }
 

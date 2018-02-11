@@ -6,11 +6,16 @@ import { IForm } from '../forms/field_template/form-field';
     templateUrl: './single-form-card.component.html'
 })
 export class SingleFormCardComponent {
-    @Input() value: IForm;
+    @Input() form: IForm;
 
     @Output() clickEmit: EventEmitter<string> = new EventEmitter<string>();
+    @Output() deleteFormClickEmit: EventEmitter<string> = new EventEmitter<string>();
 
     onClick() {
-        this.clickEmit.emit(this.value.id);
+        this.clickEmit.emit(this.form.id);
+    }
+
+    onDeleteFormClick() {
+        this.deleteFormClickEmit.emit(this.form.id);
     }
 }

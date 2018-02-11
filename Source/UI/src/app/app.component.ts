@@ -11,10 +11,17 @@ export class AppComponent {
   constructor(private _commonService: CommonService) {
     this.userName = '';
     this.password = '';
+
+    this._commonService.loginService('ckind90', 'P@ssword123').subscribe(
+      product => {this.accessToken = product.access_token;
+    },
+      error => {this.errorMessage = <any>error;
+        alert(this.errorMessage);
+      });
   }
   pageTitle: string = 'localhost';
-  userName: string = 'ckind90';
-  password: string = 'P@ssword123';
+  userName: string;
+  password: string;
   accessToken: string;
   errorMessage: any;
 
